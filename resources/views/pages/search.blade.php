@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <section class="search-field">
+    <section class="search-field white-bg">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-lg-2">
