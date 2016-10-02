@@ -23,6 +23,9 @@ class CompanyController extends Controller
         $this->middleware('role:admin', ['except' => ['index']]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $user = $this->auth->user();

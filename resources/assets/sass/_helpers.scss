@@ -6,6 +6,10 @@
     color: $secondary-color !important;
 }
 
+.underlined{
+    border-bottom: solid $secondary-color 2px;
+}
+
 .p-a-1{
     padding: 1rem;
 }

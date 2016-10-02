@@ -211,6 +211,7 @@ class SearchController extends Controller
         $searchParams = [
             'anstallningstyp' => 1,
             'antalrader' => 1,
+            'yrkesomradeid' => 15, // Pedagogiskt arbete
         ];
 
         if(isset($keyword)){
@@ -221,9 +222,13 @@ class SearchController extends Controller
             $searchParams['lanid'] = Input::get('lan');
         }
 
-        if(Input::get('yrkesomraden')){
-            $searchParams['yrkesomraden'] = Input::get('yrkesomraden');
+        if(Input::get('yrkesgrupper')){
+            $searchParams['yrkesgruppid'] = Input::get('yrkesgrupper');
         }
+
+//        if(Input::get('yrkesomraden')){
+//            $searchParams['yrkesomraden'] = Input::get('yrkesomraden');
+//        }
 
         try{
             $searchResults = $client->get('platsannonser/matchning', [
@@ -277,7 +282,7 @@ class SearchController extends Controller
             'anstallningstyp' => 1,
 //            'nyckelord' => $keyword,
 //            'lanid' => Input::get('lan') ?: null,
-            'yrkesomradeid' => Input::get('yrkesomraden') ?: null,
+            'yrkesomradeid' => 15, // Pedagogiskt arbete
             'sida' => $pageToGet
         ];
 
@@ -289,13 +294,9 @@ class SearchController extends Controller
             $searchParams['lanid'] = Input::get('lan');
         }
 
-//        $searchParams['nyckelord'] = Input::get('q') ?: null;
-//        $searchParams['lanid'] = Input::get('lan') ?: null;
-//        $searchParams['yrkesomradeid'] = Input::get('yrkesomraden') ?: null;
-////        if (Input::get('sida') != 'null') {
-//        $searchParams['sida'] = $pageToGet;
-//        }
-//        var_dump($searchParams);
+        if(Input::get('yrkesgrupper')){
+            $searchParams['yrkesgruppid'] = Input::get('yrkesgrupper');
+        }
 
         try{
             $searchResults = $client->get('platsannonser/matchning', [
@@ -341,7 +342,7 @@ class SearchController extends Controller
                 ->having('relevance', '>', 30)
                 ->orderBy('relevance', 'desc');
         } else{
-            $allMatches = Job::query()->orderBy('published_at', 'desc');
+            $allMatches = Job::query()->where('latest_application_date', '>', Carbon::now())->orderBy('published_at', 'desc');
         };
 
 
@@ -355,11 +356,12 @@ class SearchController extends Controller
                 $allMatches = $allMatches->where('county', $searchParams['lanid']);
             }
         }
-        if(Input::get('yrkesomraden') != ""){
-            $searchParams['yrkesomraden'] = Input::get('yrkesomraden');
+
+        if(Input::get('yrkesgrupper')){
+            $searchParams['yrkesgruppid'] = Input::get('yrkesgrupper');
             // Filtrera på arbetstyp
-            if(isset($searchParams['yrkesomraden'])){
-                $allMatches = $allMatches->where('type', $searchParams['yrkesomraden']);
+            if(isset($searchParams['yrkesgruppid'])){
+                $allMatches = $allMatches->where('type', $searchParams['yrkesgruppid']);
             }
         }
 

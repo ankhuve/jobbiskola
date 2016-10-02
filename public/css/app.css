@@ -6066,6 +6066,9 @@ ul.pagination {
 .text-secondary {
   color: #C9DD03 !important; }
 
+.underlined {
+  border-bottom: solid #C9DD03 2px; }
+
 .p-a-1 {
   padding: 1rem; }
 
@@ -6135,8 +6138,6 @@ section.register-blocks {
       font-weight: 300;
       text-transform: uppercase;
       margin-bottom: 1rem; }
-      section.register-blocks .block.block--register h2 .underlined {
-        border-bottom: solid #C9DD03 2px; }
 
 .btn.btn-primary {
   font-weight: 500;

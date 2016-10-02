@@ -53,6 +53,39 @@
                             Leta jobb
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ URL::action('CompanyController@index') }}">
+                            Hitta arbetskraft
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::action('FeaturedController@index') }}">
+                            Attraktiva arbetsgivare
+                        </a>
+                    </li>
+                    <li class="visible-xs">
+                        <a href="{{ URL::action('AboutController@index') }}">
+                            Om oss
+                        </a>
+                    </li>
+                    <li class="visible-xs">
+                        <a href="{{ URL::action('ContactController@create') }}">Kontakt</a>
+                    </li>
+                    <li class="dropdown hidden-xs">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Om oss <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ URL::action('AboutController@index') }}">
+                                    Om oss
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ URL::action('ContactController@create') }}">Kontakt</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

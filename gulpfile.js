@@ -18,6 +18,7 @@ elixir(mix => {
     mix.sass('app.scss')
        .webpack('app.js')
         .browserSync({
-            'proxy' : 'jobbiskola.app'
+            'proxy' : 'jobbiskola.app',
+            'port' : 5000
         });
 });

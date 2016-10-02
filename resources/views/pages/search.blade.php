@@ -51,6 +51,7 @@
     </section>
 
     <section class="search-results">
+        {{--{{ dd($searchOptions[0]->soklista) }}--}}
 
         <aside class="filters">
             <div class="container-fluid">
@@ -93,33 +94,19 @@
                                 </div>
                             </div>
                             <div class="col-sm-12 col-xs-6">
-                                <div class="input-group input-group-full">
-                                    <label class="sr-only" for="workArea">Yrkestyp</label>
-                                    <select name="yrkesomraden" class="form-input" id="workArea" style="display: block;">
-                                        <option class="defaultOption" value="" selected>Alla yrkesområden</option>
-                                        <option value="1" label="Administration, ekonomi, juridik" name="Administration, ekonomi, juridik">Administration, ekonomi, juridik</option>
-                                        <option value="2" label="Bygg och anläggning" name="Bygg och anläggning">Bygg och anläggning</option>
-                                        <option value="20" label="Chefer och verksamhetsledare" name="Chefer och verksamhetsledare">Chefer och verksamhetsledare</option>
-                                        <option value="3" label="Data/IT" name="Data/IT">Data/IT</option>
-                                        <option value="5" label="Försäljning, inköp, marknadsföring" name="Försäljning, inköp, marknadsföring">Försäljning, inköp, marknadsföring</option>
-                                        <option value="6" label="Hantverksyrken" name="Hantverksyrken">Hantverksyrken</option>
-                                        <option value="7" label="Hotell, restaurang, storhushåll" name="Hotell, restaurang, storhushåll">Hotell, restaurang, storhushåll</option>
-                                        <option value="8" label="Hälso- och sjukvård" name="Hälso- och sjukvård">Hälso- och sjukvård</option>
-                                        <option value="9" label="Industriell tillverkning" name="Industriell tillverkning">Industriell tillverkning</option>
-                                        <option value="10" label="Installation, drift, underhåll" name="Installation, drift, underhåll">Installation, drift, underhåll</option>
-                                        <option value="4" label="Kropps- och skönhetsvård" name="Kropps- och skönhetsvård">Kropps- och skönhetsvård</option>
-                                        <option value="11" label="Kultur, media, design" name="Kultur, media, design">Kultur, media, design</option>
-                                        <option value="22" label="Militärt arbete" name="Militärt arbete">Militärt arbete</option>
-                                        <option value="13" label="Naturbruk" name="Naturbruk">Naturbruk</option>
-                                        <option value="14" label="Naturvetenskapligt arbete" name="Naturvetenskapligt arbete">Naturvetenskapligt arbete</option>
-                                        <option value="15" label="Pedagogiskt arbete" name="Pedagogiskt arbete">Pedagogiskt arbete</option>
-                                        <option value="12" label="Sanering och renhållning" name="Sanering och renhållning">Sanering och renhållning</option>
-                                        <option value="16" label="Socialt arbete" name="Socialt arbete">Socialt arbete</option>
-                                        <option value="17" label="Säkerhetsarbete" name="Säkerhetsarbete">Säkerhetsarbete</option>
-                                        <option value="18" label="Tekniskt arbete" name="Tekniskt arbete">Tekniskt arbete</option>
-                                        <option value="19" label="Transport" name="Transport">Transport</option>
-                                    </select>
-                                </div>
+                                @if (isset($searchOptions[0]))
+                                    <div class="input-group input-group-full">
+                                        <label class="sr-only" for="job-group">Yrkesgrupp</label>
+                                        <select name="{{ $searchOptions[0]->soklista->listnamn }}" class="form-input" id="job-group">
+                                            <option class="defaultOption" value="" selected>Alla yrkesgrupper</option>
+
+                                            @foreach($searchOptions[0]->soklista->sokdata as $option)
+                                                <option value={{ $option->id }} label='{{ $option->namn }}'
+                                                        name='{{ $option->namn }}'>{{ $option->namn }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row">

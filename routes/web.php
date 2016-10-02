@@ -26,6 +26,7 @@ Route::get('foretag', 'CompanyController@index');
 Route::get('foretag/skapa', 'CompanyController@show');
 Route::post('foretag/skapa', 'CompanyController@create');
 Route::post('foretag/skapa/confirm', 'CompanyController@confirm');
+Route::post('foretag/skapa/store', 'CompanyController@store');
 
 Route::get('registrera', 'RegisterController@index');
 ////Route::get('search/{keyword?}', 'SearchController@index');

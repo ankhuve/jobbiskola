@@ -88,15 +88,13 @@
     <section class="register-blocks">
         <div class="container">
             <div class="row">
+                <div class="col-xs-12 text-center underlined text-uppercase m-b-2">
+                    <h2 class="">Våra senaste jobb</h2>
+                </div>
                 <div class="col-xs-12">
-                    <div class="latestJobs">
-                        <div id="jobsTitle">
-                            <h3 class="infoTitle underlined">Våra senaste jobb</h3>
-                        </div>
-                        @foreach($newJobs as $job)
-                            @include('pages.partials.custom-job-puff')
-                        @endforeach
-                    </div>
+                    @foreach($newJobs as $job)
+                        @include('pages.partials.custom-job-puff')
+                    @endforeach
                 </div>
             </div>
         </div>
