@@ -16,5 +16,24 @@ nav{
         background: $nav-font-color;
     }
 
+    .dropdown.open{
+        > a, > a:hover, > a:focus{
+            background: $primary-color-dark;
+        }
+
+        .dropdown-menu{
+            background: $primary-color;
+            color: white;
+
+            > li > a{
+                color: white;
+
+                &:hover, &:focus{
+                    background: $primary-color-dark;
+
+                }
+            }
+        }
+    }
 
 }

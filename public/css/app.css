@@ -5808,6 +5808,17 @@ nav.navbar-custom {
 nav .navbar-toggle .icon-bar {
   background: white; }
 
+nav .dropdown.open > a, nav .dropdown.open > a:hover, nav .dropdown.open > a:focus {
+  background: #6c276a; }
+
+nav .dropdown.open .dropdown-menu {
+  background: #822e81;
+  color: white; }
+  nav .dropdown.open .dropdown-menu > li > a {
+    color: white; }
+    nav .dropdown.open .dropdown-menu > li > a:hover, nav .dropdown.open .dropdown-menu > li > a:focus {
+      background: #6c276a; }
+
 .search-field {
   width: 100%;
   padding: 3rem 0; }
@@ -6069,6 +6080,9 @@ ul.pagination {
 .underlined {
   border-bottom: solid #C9DD03 2px; }
 
+.well {
+  color: #2f2f2f; }
+
 .p-a-1 {
   padding: 1rem; }
 
@@ -6155,5 +6169,29 @@ section.register-blocks {
 
 .btn.btn-padded {
   padding: 1rem; }
+
+.form-control.bordered {
+  border: solid 1px #9eaf07; }
+
+.form-control::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #a1a1a1; }
+
+.form-control:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #a1a1a1;
+  opacity: 1; }
+
+.form-control::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #a1a1a1;
+  opacity: 1; }
+
+.form-control:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #a1a1a1; }
+
+.control-label {
+  color: #2f2f2f; }
 
 /*# sourceMappingURL=app.css.map */

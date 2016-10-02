@@ -6,6 +6,31 @@
     </div>
 
     <div class="container">
+
+
+        <div class="panel panel-custom col-lg-10 col-lg-offset-1">
+            <div class="panel-heading">
+                <h2>
+                    Ser allt bra ut?
+                </h2>
+            </div>
+
+            <div class="panel-body">
+                @include('errors.validation')
+
+                <div class="well well-custom">
+                    <p style="white-space: pre-line">
+                        Tillsammans har vi över 20 års erfarenhet av rekrytering och skräddarsydda annonseringslösningar.
+
+                        Kundservice och professionalism är två av de viktigaste grundstenarna i vår värdegrund. Vårt mål är alltid att arbeta med snabba processer, långsiktiga relationer och framförallt goda resultat.
+
+                        Att hitta rätt för kunden, arbetsgivare och jobbsökande är a och o. Att få en perfekt matchning mellan dessa sker inte genom tur. Det handlar om att genom hårt arbete och målmedvetenhet hela tiden vara i framkant, medveten om arbetsmarknaden och ha god lokalkännedom.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
         <div class="newJobContainer" id="confirmBox">
             <div class="messageBoxHeading">Ser allt bra ut?</div>
 
@@ -24,7 +49,7 @@
                 <div class="basicJobInfoContainer">
                     <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
-                            {!! Form::input('text', 'type', $data['type'], ['class' =>
+                            {!! Form::input('text', 'job_group', $data['job_group'], ['class' =>
                             'form-control validationInput']) !!}
                         </div>
 

@@ -27,20 +27,20 @@
         <div class="form-group col-xs-12">
             {!! Form::label('name', 'Namn') !!}
             <span class="required"> *</span>
-            {!! Form::text('name', Auth::user() ? Auth::user()->name : '', array('required', 'class'=>'form-control', 'placeholder'=>'Förnamn Efternamn')) !!}
+            {!! Form::text('name', Auth::user() ? Auth::user()->name : '', array('required', 'class'=>'form-control bordered', 'placeholder'=>'Förnamn Efternamn')) !!}
         </div>
     </div>
 
     <div class="form-group">
         {!! Form::label('email', 'E-mailadress') !!}
         <span class="required"> *</span>
-        {!! Form::text('email', Auth::user() ? Auth::user()->email : '', array('required', 'class'=>'form-control', 'placeholder'=>'din@email.se')) !!}
+        {!! Form::text('email', Auth::user() ? Auth::user()->email : '', array('required', 'class'=>'form-control bordered', 'placeholder'=>'din@email.se')) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('message', 'Meddelande') !!}
         <span class="required"> *</span>
-        {!! Form::textarea('message', null, array('required', 'class'=>'form-control', 'placeholder'=>'Här har du möjlighet att göra en liten presentation om dig själv, och berätta varför just du skulle passa bra för det här jobbet!')) !!}
+        {!! Form::textarea('message', null, array('required', 'class'=>'form-control bordered', 'placeholder'=>'Här har du möjlighet att göra en liten presentation om dig själv, och berätta varför just du skulle passa bra för det här jobbet!')) !!}
     </div>
 
     <div class="form-group row col-md-4">
@@ -49,7 +49,11 @@
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Skicka ansökan!', array('class'=>'btn btn-primary')) !!}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                {!! Form::submit('Skicka ansökan!', array('class'=>'btn btn-primary col-xs-12')) !!}
+            </div>
+        </div>
     </div>
 
     {!! Form::close() !!}

@@ -28,17 +28,17 @@
 
                     <div class="form-group">
                         {!! Form::label('Namn') !!}
-                        {!! Form::text('name', Auth::user() ? Auth::user()->name : '', array('required', 'class'=>'form-control', 'placeholder'=>'Förnamn Efternamn')) !!}
+                        {!! Form::text('name', Auth::user() ? Auth::user()->name : '', array('required', 'class'=>'form-control bordered', 'placeholder'=>'Förnamn Efternamn')) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('E-mailadress') !!}
-                        {!! Form::text('email', Auth::user() ? Auth::user()->email : '', array('required', 'class'=>'form-control', 'placeholder'=>'din@email.se')) !!}
+                        {!! Form::text('email', Auth::user() ? Auth::user()->email : '', array('required', 'class'=>'form-control bordered', 'placeholder'=>'din@email.se')) !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('Meddelande') !!}
-                        {!! Form::textarea('message', null, array('required', 'class'=>'form-control', 'placeholder'=>'Vad funderar du på?')) !!}
+                        {!! Form::textarea('message', null, array('required', 'class'=>'form-control bordered', 'placeholder'=>'Vad funderar du på?')) !!}
                     </div>
 
                     @if(!empty($errors->all()))
