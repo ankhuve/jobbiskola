@@ -1,72 +1,92 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="col-md-10 col-md-offset-1 newJobContainer">
-            <div class="messageBoxHeading">
-                <a href="{{ URL::previous() }}">
-                    <button class="singleJobButton">
-                        <span class="glyphicon glyphicon-triangle-left"/>
-                    </button>
-                </a>
-                {{ $jobMatch->annons->annonsrubrik }}
 
-                    <h2 class="text-right workplace">
-                        <i>
-                            @if(property_exists($jobMatch->arbetsplats, 'hemsida'))
-                                <a href={{ $jobMatch->arbetsplats->hemsida }}>
-                                    {{ $jobMatch->arbetsplats->arbetsplatsnamn }}
-                                </a>
-                            @else
-                                {{ $jobMatch->arbetsplats->arbetsplatsnamn }}
-                            @endif
-                        </i>
-                    </h2>
+    <section class="m-t-2">
+        <div class="container">
 
+            @if(Session::has('contactError'))
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <div class="alert alert-custom">
+                            {!! Session::get('contactError') !!}
+                        </div>
+                    </div>
+                </div>
+            @endif
 
-            </div>
-            <div class="panel-body">
-                <p style="white-space: pre-line">{{ $jobMatch->annons->annonstext }}</p>
-            </div>
-            <div class="moreInfo">
-                <p class="extraJobInfo"> Varaktighet: {{ $jobMatch->villkor->varaktighet }} </p>
-                <p class="extraJobInfo"> Kommun:  {{ $jobMatch->annons->kommunnamn }}</p>
-                <p class="extraJobInfo"> Publicerad: {{ date('d-m-Y', strtotime($jobMatch->annons->publiceraddatum)) }} </p>
-                <p class="extraJobInfo"> Dagar sedan publicering: {{ $daysSincePublished }} </p>
-                {{--@if(key_exists('platsannonsUrl', $jobMatch->annons))--}}
-                    {{--<p class="extraJobInfo"><a target="_blank" href="{{ $jobMatch->annons->platsannonsUrl }}">Länk till arbetsförmedlingen</a></p>--}}
-                {{--@endif--}}
-                @if(isset($jobMatch->ansokan->sista_ansokningsdag))
-                        <div class="extraJobInfo">Sista ansökningsdag {{ substr($jobMatch->ansokan->sista_ansokningsdag, 0, 10) }}</div>
-                @endif
+            @if(Session::has('message'))
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <div class="alert alert-success">
+                            {!! Session::get('message') !!}
+                        </div>
+                    </div>
+                </div>
+            @endif
 
-                {{-- Om vi skulle vilja ha kontaktformulär på AF-annonser också --}}
-                {{--<div class="row">--}}
-                    {{--@if(!isset($jobMatch->annons->platsannonsUrl))--}}
-                        {{--@include('pages.partials.applicationform')--}}
-                    {{--@endif--}}
-                    {{--<div class="col-sm-4 col-sm-offset-4">--}}
-                        {{--@if(!isset($jobMatch->annons->platsannonsUrl))--}}
-                            {{--<button class="btn btn-confirm" data-action="contactForm">Ansök</button>--}}
-                        {{--@else--}}
-                            {{--<a target="_blank" href="{{ $jobMatch->annons->platsannonsUrl }}">--}}
-                                {{--<button class="btn btn-confirm">Ansök</button>--}}
-                            {{--</a>--}}
-                        {{--@endif--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+            <div class="panel panel-custom col-lg-10 col-lg-offset-1">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h1 class="text-center center-block">
+                                {{ $jobMatch->annons->annonsrubrik }}
+                            </h1>
+                            <a href="{{ URL::previous() }}">
+                                <button class="panel-heading-btn btn btn-danger left">
+                                    <span class="glyphicon glyphicon-triangle-left"></span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="text-center center-block text-secondary">
+                                <i>
+                                    @if(property_exists($jobMatch->arbetsplats, 'hemsida'))
+                                        <a href={{ $jobMatch->arbetsplats->hemsida }}>
+                                            {{ $jobMatch->arbetsplats->arbetsplatsnamn }}
+                                        </a>
+                                    @else
+                                        {{ $jobMatch->arbetsplats->arbetsplatsnamn }}
+                                    @endif
+                                </i>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="panel-body">
+                    <div class="well well-custom">
+                        <p style="white-space: pre-line">
+                            {{ $jobMatch->annons->annonstext }}
+                        </p>
+                    </div>
+                </div>
 
                 <div class="row">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        @if(isset($jobMatch->annons->platsannonsUrl))
-                            <a target="_blank" href="{{ $jobMatch->annons->platsannonsUrl }}">
-                                <button class="btn btn-confirm">Ansök</button>
-                            </a>
+                    <div class="panel-footer">
+                        <p> Varaktighet:  {{ $jobMatch->villkor->varaktighet }}</p>
+                        <p> Kommun:  {{ $jobMatch->annons->kommunnamn }}</p>
+                        <p> Publicerad: {{ date('d-m-Y', strtotime($jobMatch->annons->publiceraddatum)) }}</p>
+                        <p> Dagar sedan publicering: {{ $daysSincePublished }}</p>
+                        @if(isset($jobMatch->ansokan->sista_ansokningsdag))
+                            <hr>
+                            <p>Sista ansökningsdag {{ substr($jobMatch->ansokan->sista_ansokningsdag, 0, 10) }}</p>
                         @endif
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                @if(isset($jobMatch->annons->platsannonsUrl))
+                                    <a target="_blank" href="{{ $jobMatch->annons->platsannonsUrl }}">
+                                        <button class="btn btn-lg btn-secondary btn-round center-block">Ansök</button>
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
 @endsection

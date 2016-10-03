@@ -1,19 +1,37 @@
 .btn{
+    color: white;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border: none;
+    -webkit-transition: background 0.25s;
+    -moz-transition: background 0.25s;
+    -ms-transition: background 0.25s;
+    -o-transition: background 0.25s;
+    transition: background 0.25s;
+
+    &:hover, &:active, &:focus{
+        color: white;
+    }
+
     &.btn-primary{
-        font-weight: 500;
-        font-size: 1.5rem;
-        text-transform: uppercase;
         background: $primary-color;
-        border: none;
-        -webkit-transition: background 0.25s;
-        -moz-transition: background 0.25s;
-        -ms-transition: background 0.25s;
-        -o-transition: background 0.25s;
-        transition: background 0.25s;
 
         &:hover, &:active, &:focus{
             background: $primary-color-dark;
         }
+    }
+
+    &.btn-secondary{
+        background: $secondary-color;
+
+        &:hover, &:active, &:focus{
+            background: $secondary-color-dark;
+        }
+    }
+
+    &.btn-link{
+        color: $brand-info;
     }
 
     &.btn-round{
@@ -23,6 +41,12 @@
     }
 
     &.btn-padded{
-        padding: 1rem;
+        padding: 1rem 2rem;
+    }
+
+    &.btn-lg{
+        font-size: 2rem;
+        padding: 1.5rem 4rem;
+        font-weight: 400;
     }
 }

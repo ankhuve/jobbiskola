@@ -30,11 +30,14 @@ class CompanyController extends Controller
     {
         $user = $this->auth->user();
 
+
         if(!is_null($user)){
             if($user->role === 1){
                 return view('auth.register')->with(['user' => $user]);
             } elseif($user->role === 2 || $user->role === 3){
-                return view('company.home', compact('user'));
+                $allJobs = Job::where('user_id', $user->id)->paginate(12);
+//                dd($allJobs);
+                return view('company.home', compact('user', 'allJobs'));
             }
         } else{
             return view('auth.register')->with(['user' => $user]);
