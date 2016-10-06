@@ -40,11 +40,11 @@ class SearchController extends Controller
         }
 
         // hämta våra jobb
-        if (!is_null($keyword) || Input::get('lan') != "" || Input::get('yrkesomraden') != "") {
+        if (!is_null($keyword) || Input::get('lan') != "" || Input::get('yrkesgrupper') != "") {
             // om vi har ett sökord eller parametrar
             $customResults = $this->searchCustomJobs($keyword, $request, $askedPage);
         } else {
-            // om vi inte har ett sökord i requesten
+            // om vi inte har några filter eller sökord
             $customResults = $this->getNewestCustomJobs(); // get the newest custom jobs
         }
 
@@ -219,7 +219,12 @@ class SearchController extends Controller
         }
 
         if(Input::get('lan')){
-            $searchParams['lanid'] = Input::get('lan');
+            // om sökningen är typ 'norge'
+            if(Input::get('lan') > 120){
+                $searchParams['landid'] = Input::get('lan');
+            } else{
+                $searchParams['lanid'] = Input::get('lan');
+            }
         }
 
         if(Input::get('yrkesgrupper')){
@@ -291,7 +296,12 @@ class SearchController extends Controller
         }
 
         if(Input::get('lan')){
-            $searchParams['lanid'] = Input::get('lan');
+            // om sökningen är typ 'norge'
+            if(Input::get('lan') > 120){
+                $searchParams['landid'] = Input::get('lan');
+            } else{
+                $searchParams['lanid'] = Input::get('lan');
+            }
         }
 
         if(Input::get('yrkesgrupper')){

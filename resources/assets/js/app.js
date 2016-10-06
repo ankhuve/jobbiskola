@@ -24,5 +24,10 @@ const app = new Vue({
         toggleApplicationForm: function(){
             this.applicationFormShowing = !this.applicationFormShowing;
         },
+
+        resetSearchFilters: function(){
+            $(".filters option[selected]").removeAttr('selected');
+            $(".defaultOption").attr('selected','selected');
+        }
     }
 });

@@ -118,18 +118,23 @@ class JobController extends Controller
         }
 
         // skicka mail
-        $mailSent = $this->sendApplicationMail($request, $fileData ?: null, $job ?: null);
-
-
-
-        if($mailSent){
-            return \Redirect::to($jobUrl)
-                ->with('message', 'Tack för din ansökan!');
-        } else{
+        try{
+            $mailSent = $this->sendApplicationMail($request, $fileData ?: null, $job ?: null);
+            if($mailSent){
+                return \Redirect::to($jobUrl)
+                    ->with('message', 'Tack för din ansökan!');
+            } else{
+                return \Redirect::to($jobUrl)
+                    ->with('contactError', 'Hoppsan! Något gick snett när din ansökan skulle skickas. <br><br>Försök igen!')
+                    ->withInput();
+            }
+        }
+        catch(\Exception $e){
             return \Redirect::to($jobUrl)
                 ->with('contactError', 'Hoppsan! Något gick snett när din ansökan skulle skickas. <br><br>Försök igen!')
                 ->withInput();
         }
+
     }
 
 

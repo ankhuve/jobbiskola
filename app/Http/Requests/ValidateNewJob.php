@@ -27,7 +27,7 @@ class ValidateNewJob extends FormRequest
         return [
             'title' => 'required|max:60|string',
             'work_place' => 'required|string',
-            'job_group' => 'required|integer',
+            'type' => 'required|integer',
             'county' => 'required',
             'municipality' => 'required|string',
             'description' => 'required|string',

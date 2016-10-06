@@ -35,7 +35,7 @@ class CompanyController extends Controller
             if($user->role === 1){
                 return view('auth.register')->with(['user' => $user]);
             } elseif($user->role === 2 || $user->role === 3){
-                $allJobs = Job::where('user_id', $user->id)->paginate(12);
+                $allJobs = Job::where('user_id', $user->id)->orderBy('published_at', 'DESC')->paginate(12);
 //                dd($allJobs);
                 return view('company.home', compact('user', 'allJobs'));
             }
@@ -115,7 +115,7 @@ class CompanyController extends Controller
      * Creates a new job.
      *
      * @param ValidateNewJob $request
-     * @return static
+     * @return Job
      */
     public function createJob(ValidateNewJob $request)
     {
