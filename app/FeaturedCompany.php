@@ -32,7 +32,7 @@ class FeaturedCompany extends Model
     /**
      * Check if the company has made a presentation yet.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return bool
      */
     public function hasPresentation()
     {
