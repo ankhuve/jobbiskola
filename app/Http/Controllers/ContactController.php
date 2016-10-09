@@ -28,8 +28,8 @@ class ContactController extends Controller
                 'user_message' => $request->get('message')
             ), function($message)
             {
-                $message->from('postmaster@jobbrek.se');
-                $message->to('info@jobbrek.se', config('app.name'))->subject('Kontakt via ' . config('app.name') . '.se');
+                $message->from(env('MAIL_USERNAME'), config('app.name'));
+                $message->to('info@jobbiskola.se', config('app.name'))->subject('Kontakt via ' . config('app.name') . '.se');
             });
 
         return \Redirect::action('ContactController@create')
