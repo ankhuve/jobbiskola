@@ -12,7 +12,7 @@
                             </h4>
                         </div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -71,6 +71,19 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group{{ $errors->has('cv') ? ' has-error' : '' }}">
+                                    {!! Form::label('cv', 'CV (.doc, .docx, .pdf, .rtf, .txt, max 3MB)', ['class' => 'control-label col-md-4']) !!}
+
+                                    <div class="col-md-6">
+                                        {!! Form::file('cv', array('class'=>'form-control bordered')) !!}
+                                    </div>
+                                    @if ($errors->has('cv'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('cv') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
                                         <button type="submit" class="btn btn-secondary">
@@ -78,6 +91,7 @@
                                         </button>
                                     </div>
                                 </div>
+
                             </form>
                         </div>
                     </div>
