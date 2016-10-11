@@ -6329,6 +6329,7 @@ section.register-blocks {
       .puff.puff-featured .puff-heading .logo-holder {
         height: 100px;
         padding: 10px;
+        -ms-grid-row-align: center;
         align-self: center;
         background: white;
         width: 100%; }
