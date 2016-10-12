@@ -30,7 +30,10 @@ class FeaturedController extends Controller
      */
     public function featured($id)
     {
-        $featured = FeaturedCompany::find($id)->where('end_date', '>', Carbon::now())->first();
+        $featured = FeaturedCompany::where([
+            ['id', '=', $id],
+            ['end_date', '>=', Carbon::now()]
+        ])->first();
         if(collect($featured)->isEmpty()){
             return redirect('home');
         } else{
