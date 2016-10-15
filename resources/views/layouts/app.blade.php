@@ -92,7 +92,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Logga in</a></li>
+                    {{--<li><a href="{{ url('/login') }}">Logga in</a></li>--}}
                     <li><a href="{{ url('/register') }}">Registrera</a></li>
                 @else
                     <li class="dropdown">
@@ -132,6 +132,16 @@
                     <li>{{ $key }} : {{ $value }}</li>
                 @endforeach
             </ul>
+        </div>
+    </div>
+@endif
+
+@if(Session::has('message'))
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-xs-12 m-t-2">
+            <div class="alert alert-success">
+                {!! Session::get('message') !!}
+            </div>
         </div>
     </div>
 @endif

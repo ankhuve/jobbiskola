@@ -6232,6 +6232,9 @@ section.register-blocks {
 .control-label {
   color: #2f2f2f; }
 
+.input-group-full {
+  width: 100%; }
+
 .panel.panel-custom .panel-footer {
   background: #822e81;
   border: none;
@@ -6329,7 +6332,6 @@ section.register-blocks {
       .puff.puff-featured .puff-heading .logo-holder {
         height: 100px;
         padding: 10px;
-        -ms-grid-row-align: center;
         align-self: center;
         background: white;
         width: 100%; }

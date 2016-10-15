@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Validator;
@@ -29,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/hitta';
 
     protected $request;
 
@@ -116,5 +118,27 @@ class RegisterController extends Controller
             // failed to validate upload, broken file?
             return null;
         }
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+//        $this->guard()->login($user);
+
+//        return view($this->redirectTo)
+        return redirect($this->redirectPath())->with('message', 
+            '<h2>Tack för att du registrerade dig!</h2> 
+            Du är nu registrerad i vår databas och är synlig för företag som letar efter just dig.
+            <br>Lycka till med jobbsökandet!
+            <br><br>Förresten, du vet väl att du alltid kan <a href="' . action('ContactController@create') . '">kontakta oss</a> om du har några frågor?');
     }
 }
