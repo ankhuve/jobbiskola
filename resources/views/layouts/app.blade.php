@@ -11,7 +11,7 @@
     <meta property="og:title" content="@yield('og-title', 'Jobbiskola.se | Lediga jobb inom skola')" />
     <meta property="og:description" content="@yield('og-description', 'Här kan du söka bland tusentals jobb! Oavsett om du är nyutexaminerad eller helt enkelt vill vidare i karriären kan vi hjälpa dig att hitta rätt. Vi jobbar rikstäckande och hjälper allt i från enskilda firmor till stora koncerner, kommuner och myndigheter med att hitta rätt personal. ')" />
     <meta property="og:image" content="@yield('og-image', asset('img/jobbiskola_og.png'))" />
-    <meta property="og:url" content={{ URL::current() }}" />
+    <meta property="og:url" content={{ URL::current() }} />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
