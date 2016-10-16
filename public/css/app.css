@@ -6208,6 +6208,13 @@ section.register-blocks {
     padding: 1.5rem 4rem;
     font-weight: 400; }
 
+.share-buttons a {
+  display: inline-block;
+  margin: 1rem; }
+  .share-buttons a > img {
+    height: 50px;
+    width: 50px; }
+
 .form-control.bordered {
   border: solid 1px #9eaf07; }
 
@@ -6235,15 +6242,17 @@ section.register-blocks {
 .input-group-full {
   width: 100%; }
 
-.panel.panel-custom .panel-footer {
-  background: #822e81;
-  border: none;
-  padding: 3rem;
-  height: 100%;
-  -webkit-transition: height 0.25s;
-  transition: height 0.25s; }
-  .panel.panel-custom .panel-footer p {
-    color: white; }
+.panel.panel-custom {
+  border: none; }
+  .panel.panel-custom .panel-footer {
+    background: #822e81;
+    border: none;
+    padding: 3rem;
+    height: 100%;
+    -webkit-transition: height 0.25s;
+    transition: height 0.25s; }
+    .panel.panel-custom .panel-footer p {
+      color: white; }
 
 .panel .panel-heading-btn {
   padding: 0.75rem 1.35rem;

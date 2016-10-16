@@ -15,7 +15,7 @@
                             <div class="col-md-12">
                                 <div class="input-group input-group-full">
                                     <label class="sr-only" for="keyword">Sökord</label>
-                                    {!! Form::text('q', '', array('class'=>'form-control form-input', 'placeholder'=>'Specialpedagog, rektor..',
+                                    {!! Form::text('q', '', array('class'=>'form-control form-input', 'placeholder'=>'Specialpedagog, förskollärare..',
                                     'autofocus'=>'autofocus', 'id' => 'keyword')) !!}
 
                                     <label class="sr-only" for="submit">Skicka sökning</label>
