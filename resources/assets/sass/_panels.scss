@@ -1,5 +1,7 @@
 .panel{
     &.panel-custom{
+        border: none;
+
         .panel-footer{
             background: $primary-color;
             border: none;

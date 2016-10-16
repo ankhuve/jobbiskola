@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title', config('app.name', 'Jobbiskola') . " | " . $jobMatch->annons->annonsrubrik)
+@section('meta-description', $jobMatch->annons->annonsrubrik . " | " . $jobMatch->arbetsplats->arbetsplatsnamn)
+
+@section('og-title', $jobMatch->annons->annonsrubrik)
+@section('og-description', (strlen(strip_tags($jobMatch->annons->annonstext))<200) ? strip_tags($jobMatch->annons->annonstext) : substr(strip_tags($jobMatch->annons->annonstext), 0, 200)." ...")
+
+
+
 @section('content')
 
     <section class="m-t-2">
@@ -62,7 +70,18 @@
                             {{ $jobMatch->annons->annonstext }}
                         </p>
                     </div>
+                    <div class="share-buttons text-right">
+                        <h4>Dela jobbannons:
+                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ env('APP_ENV') === "local" ? env('APP_URL') : URL::current() }}" target="_blank">
+                                <img src="{{ asset('img/linkedin.png') }}" alt="LinkedIn" />
+                            </a>
+                            <a href="http://www.facebook.com/sharer.php?u={{ env('APP_ENV') === "local" ? env('APP_URL') : URL::current() }}" target="_blank">
+                                <img src="{{ asset('img/facebook.png') }}" alt="Facebook" />
+                            </a>
+                        </h4>
+                    </div>
                 </div>
+
 
                 <div class="row">
                     <div class="panel-footer">
@@ -74,6 +93,7 @@
                             <hr>
                             <p>Sista ansökningsdag {{ substr($jobMatch->ansokan->sista_ansokningsdag, 0, 10) }}</p>
                         @endif
+                        <h4 class="text-center m-v-2 text-secondary">Kom ihåg att ange {{ config('app.name', 'Jobbiskola') }} som referens vid ansökan!</h4>
                         <div class="row">
                             <div class="col-sm-4 col-sm-offset-4">
                                 @if(isset($jobMatch->annons->platsannonsUrl))

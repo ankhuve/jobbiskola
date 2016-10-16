@@ -15,7 +15,7 @@
                             <div class="col-md-12">
                                 <div class="input-group input-group-full">
                                     <label class="sr-only" for="keyword">Sökord</label>
-                                    {!! Form::text('q', '', array('class'=>'form-control form-input', 'placeholder'=>'Specialpedagog, rektor..',
+                                    {!! Form::text('q', '', array('class'=>'form-control form-input', 'placeholder'=>'Specialpedagog, förskollärare..',
                                     'autofocus'=>'autofocus', 'id' => 'keyword')) !!}
 
                                     <label class="sr-only" for="submit">Skicka sökning</label>
@@ -61,7 +61,7 @@
                         <h4>Förfina sökning</h4>
 
                         <div class="row">
-                            <div class="col-sm-12 col-xs-6">
+                            <div class="col-xs-12">
                                 <div class="input-group input-group-full">
                                     <label class="sr-only" for="county">Län</label>
                                     <select name="lan" class="form-input" id="county" style="display: block;">
@@ -93,7 +93,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-xs-6">
+                            <div class="col-xs-12">
                                 @if (isset($searchOptions[0]))
                                     <div class="input-group input-group-full">
                                         <label class="sr-only" for="job-group">Yrkesgrupp</label>

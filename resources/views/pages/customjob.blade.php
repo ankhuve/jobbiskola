@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('title', config('app.name', 'Jobbiskola') . " | " . $jobMatch->title)
+@section('meta_description', $jobMatch->title . " | " . $jobMatch->work_place)
+
+@section('og-title', $jobMatch->title)
+@section('og-description', (strlen(strip_tags($jobMatch->description))<200) ? strip_tags($jobMatch->description) : substr(strip_tags($jobMatch->description), 0, 200)." ...")
+@section('og-image', $jobMatch->user->logo_path ? env("UPLOADS_URL") . "/" . $jobMatch->user->logo_path : asset('img/jobbiskola_og.png'))
+
 @section('content')
     <section class="m-t-2">
         <div class="container">
@@ -63,6 +70,16 @@
                             {!! $jobMatch->description !!}
                         </p>
                     </div>
+                    <div class="share-buttons text-right">
+                        <h4>Dela jobbannons:
+                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ env('APP_ENV') === "local" ? env('APP_URL') : URL::current() }}" target="_blank">
+                                <img src="{{ asset('img/linkedin.png') }}" alt="LinkedIn" />
+                            </a>
+                            <a href="http://www.facebook.com/sharer.php?u={{ env('APP_ENV') === "local" ? env('APP_URL') : URL::current() }}" target="_blank">
+                                <img src="{{ asset('img/facebook.png') }}" alt="Facebook" />
+                            </a>
+                        </h4>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -74,6 +91,7 @@
                             <hr>
                             <p>Sista ansökningsdag {{ $jobMatch->latest_application_date }}</p>
                         @endif
+                        <h4 class="text-center m-v-2 text-secondary">Kom ihåg att ange {{ config('app.name', 'Jobbiskola') }} som referens vid ansökan!</h4>
                         <div class="row">
                             @if(empty($jobMatch->external_link))
                                 @include('pages.partials.applicationform')

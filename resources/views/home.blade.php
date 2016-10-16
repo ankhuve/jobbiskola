@@ -41,9 +41,13 @@
                         <div>
                             <h3>Aktiva jobbannonser </h3>
                         </div>
-                        @foreach(str_split($numJobs) as $number)<span>
-                        {{ $number }}
-                    </span>@endforeach
+                        <div class="row">
+                            &nbsp;
+                            @foreach(str_split($numJobs) as $number)<span>
+                            {{ $number }}
+                        </span>@endforeach
+
+                        </div>
                     </div>
                 </div>
 
@@ -59,7 +63,7 @@
             <div class="row">
 
                 @foreach($content as $key => $block)
-                    <div class="col-md-5 col-lg-4 {{ $key === 0 ? 'col-md-offset-1 col-lg-offset-2' : '' }}">
+                    <div class="col-md-5 col-lg-4 {{ $key === 0 ? 'col-md-offset-1 col-lg-offset-2 m-b-2' : '' }}">
                         <div class="block block--register">
                             <h2><span class="underlined">{{ $block->title }}</span>?</h2>
                             <p style="white-space: pre-line">
@@ -74,7 +78,7 @@
                                     <br/>
                                 </div>
                                 <div class="row m-t-1">
-                                    <div class="col-xs-12 text-center">Redan medlem? <a class="loginLink" href="auth/login">Logga in!</a></div>
+                                    <div class="col-xs-12 text-center">Redan medlem? <a class="loginLink" href="{{ route('login') }}">Logga in!</a></div>
                                 </div>
                             </div>
                         </div>

@@ -5,13 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" minimal-ui>
 
-    <meta name="description" content="Jobbiskola.se | Lediga jobb inom skola" />
+    <meta name="description" content="@yield('meta-description', 'Jobbiskola.se | Lediga jobb inom skola')" />
     <meta name="keywords" content="Lediga jobb, jobb, skola, extrajobb, deltidsjobb, heltid, jobba extra" />
+
+    <meta property="og:title" content="@yield('og-title', 'Jobbiskola.se | Lediga jobb inom skola')" />
+    <meta property="og:description" content="@yield('og-description', 'Här kan du söka bland tusentals jobb! Oavsett om du är nyutexaminerad eller helt enkelt vill vidare i karriären kan vi hjälpa dig att hitta rätt. Vi jobbar rikstäckande och hjälper allt i från enskilda firmor till stora koncerner, kommuner och myndigheter med att hitta rätt personal. ')" />
+    {{--Använd om man vill ha företagets logga för annons (kan bli konstiga proportioner)--}}
+    {{--    <meta property="og:image" content="@yield('og-image', asset('img/jobbiskola_og.png'))" />--}}
+    <meta property="og:image" content={{ asset('img/jobbiskola_og.png') }} />
+    <meta property="og:url" content={{ URL::current() }} />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Jobbiskola') }}</title>
+    <title>@yield('title', config('app.name', 'Jobbiskola'))</title>
 
     <!-- Styles -->
     <link href="{{ elixir('/css/app.css') }}" rel="stylesheet">
@@ -92,7 +99,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Logga in</a></li>
+                    {{--<li><a href="{{ url('/login') }}">Logga in</a></li>--}}
                     <li><a href="{{ url('/register') }}">Registrera</a></li>
                 @else
                     <li class="dropdown">
@@ -132,6 +139,16 @@
                     <li>{{ $key }} : {{ $value }}</li>
                 @endforeach
             </ul>
+        </div>
+    </div>
+@endif
+
+@if(Session::has('message'))
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-xs-12 m-t-2">
+            <div class="alert alert-success">
+                {!! Session::get('message') !!}
+            </div>
         </div>
     </div>
 @endif
