@@ -92,9 +92,8 @@
                                     {!! Form::label('county', 'Län', ['class' => 'control-label col-md-4']) !!}
                                     <div class="col-md-6">
                                         <select name="lan" class="form-control bordered" id="county" style="display: block;">
-                                            <option value="" class="defaultOption" selected>Alla län</option>
+                                            <option selected disabled>------</option>
                                             <option value="155" label="Norge" name="Norge">Norge</option>
-                                            <option disabled>------</option>
                                             <option value="10" label="Blekinge län" name="Blekinge län">Blekinge län</option>
                                             <option value="20" label="Dalarnas län" name="Dalarnas län">Dalarnas län</option>
                                             <option value="9" label="Gotlands län" name="Gotlands län">Gotlands län</option>
