@@ -6242,6 +6242,10 @@ section.register-blocks {
 .input-group-full {
   width: 100%; }
 
+[type="checkbox"].input--large {
+  height: 15px;
+  width: 15px; }
+
 .panel.panel-custom {
   border: none; }
   .panel.panel-custom .panel-footer {
