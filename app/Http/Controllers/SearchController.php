@@ -85,7 +85,7 @@ class SearchController extends Controller
             // om vi inte ska hämta några jobb, men vill ha stats ändå
             $afSearchMeta['antal_platsannonser'] = $this->getNumberOfAfJobs($keyword);
         } elseif($offset === 0 && $shouldGetAFJobs){
-            // om vi inte har offset och ska är på en sida där af-jobb ska hämtas
+            // om vi inte har offset och är på en sida där af-jobb ska hämtas
             $results = $this->search($keyword, $numToGetFromAF, $firstPageToGetFromAF); // get jobs from Arbetsförmedlingen
             $afJobs = $results['jobMatches'];
             $afSearchMeta = $results['searchMeta'];
