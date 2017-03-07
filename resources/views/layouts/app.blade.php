@@ -83,7 +83,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img alt="{{ config('app.name', 'Jobbiskola') }}" src="{{ asset("img/jobbiskola_logo.png") }}">
+                <img alt="{{ config('app.name', 'Jobbiskola') }}" src="{{ asset("img/logo.png") }}">
             </a>
         </div>
 
