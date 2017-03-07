@@ -45,7 +45,6 @@ class HomeController extends Controller {
     public function getProfiledJobs()
     {
         $data = ProfiledJob::all()->sortByDesc('start_date')->where('end_date', '>', Carbon::now());
-//        dd($data);
         return $data;
     }
 

@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        @if (!empty($profiledJobs))
+        @if (!$profiledJobs->isEmpty())
             @include('pages.partials.profiled-jobs')
         @endif
 
