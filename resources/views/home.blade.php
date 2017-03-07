@@ -53,7 +53,10 @@
             </div>
         </div>
 
-        @include('pages.partials.profiled-jobs')
+        @if (!empty($profiledJobs))
+            @include('pages.partials.profiled-jobs')
+        @endif
+
     </section>
 
     <section class="register-blocks">

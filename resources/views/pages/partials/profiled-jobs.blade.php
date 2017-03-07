@@ -1,17 +1,15 @@
 <div class="container m-t-2">
 
     <div class="slider--jobs" data-flickity='{ "cellAlign": "left", "groupCells": true, "autoPlay": 5000, "prevNextButtons": false}'>
-        @if (!empty($profiledJobs))
-            @foreach($profiledJobs as $profiledJob)
+        @foreach($profiledJobs as $profiledJob)
 
-                @php
-                    $job = $profiledJob->job
-                @endphp
+            @php
+                $job = $profiledJob->job
+            @endphp
 
-                @include('pages.partials.profiled-job-puff')
+            @include('pages.partials.profiled-job-puff')
 
-            @endforeach
-        @endif
+        @endforeach
     </div>
 
     <div class="col-xs-12 col-md-offset-8 col-md-4">
@@ -23,10 +21,4 @@
             </a>
         </div>
     </div>
-
-
-
-
-
-
 </div>
