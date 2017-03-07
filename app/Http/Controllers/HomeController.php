@@ -31,14 +31,13 @@ class HomeController extends Controller {
 
 		$page = Page::find(3);
 		$pageContent = $page->content;
-//        dd($newJobs->all());
+
 		return view('home', ['newJobs' => $newJobs->all(), 'numJobs' => $numJobs, 'page' => $page, 'content' => $pageContent, 'profiledJobs' => $profiledJobs]);
 	}
 
     public function getNewestJobs()
     {
         $data = Job::all()->sortByDesc('published_at')->take(2);
-//        dd($data);
         return $data;
     }
 

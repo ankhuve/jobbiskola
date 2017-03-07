@@ -8456,6 +8456,7 @@ ul.pagination .active > span:hover {
     margin: 20px;
   }
   .hero {
+    min-height: 500px;
     padding-top: 80px;
     background: url("../img/pennvassare.jpg") center no-repeat;
     background-size: cover;
