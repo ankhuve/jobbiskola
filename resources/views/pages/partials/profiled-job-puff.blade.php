@@ -23,7 +23,7 @@
 
         <div class="block__lower">
             <div class="block__title">
-                <h2>{{ $job->title }}</h2>
+                <h2>{{ $job->profiledJob->title ? : $job->title }}</h2>
             </div>
 
             <div class="block__bottom-info--left">
