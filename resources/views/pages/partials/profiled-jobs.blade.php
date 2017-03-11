@@ -15,7 +15,7 @@
     <div class="col-xs-12 col-md-offset-8 col-md-4">
         <div class="slider--jobs__action">
             <a href="{{ action('ContactController@create') }}">
-                <button class="btn btn-info btn-sm">
+                <button class="btn btn-primary btn-sm">
                     Vill du synas här?
                 </button>
             </a>

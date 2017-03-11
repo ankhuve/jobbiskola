@@ -8252,9 +8252,10 @@ nav .dropdown.open .dropdown-menu > li > a:hover, nav .dropdown.open .dropdown-m
 .block--profiled-job .block__lower {
   position: relative;
   height: 50%;
-  background: #822e81;
+  background: gray;
   padding: 0 1rem 0;
   width: 100%;
+  box-shadow: inset 0 15px 15px -14px rgba(0, 0, 0, 0.4);
 }
 
 .block--profiled-job .block__lower .block__bottom-info--left {
