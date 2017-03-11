@@ -31,7 +31,7 @@
                 <span class="text-small">{{ $job->municipality }}</span>
             </div>
 
-            <div class="block__bottom-info--right">
+            <div class="block__bottom-info--right" title="Sista ansökningsdatum för jobbet.">
                 <img class="icon--small" src="{{ asset('img/calendar_secondary.png') }}"/>
                 <span class="text-small date">{{ $job->latest_application_date }}</span>
             </div>
