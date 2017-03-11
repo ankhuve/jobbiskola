@@ -16,9 +16,14 @@ require('laravel-elixir-browsersync-official');
 
 elixir(mix => {
     mix.sass('app.scss')
-       .webpack('app.js')
+        .webpack('app.js')
         .browserSync({
             'proxy' : 'jobbiskola.app',
             'port' : 5000
         });
+
+    mix.version([
+        'css/app.css',
+        'js/app.js'
+    ], 'public/build');
 });
