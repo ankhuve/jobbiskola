@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Job;
+use App\User;
 use Carbon\Carbon;
 use DB;
 use GuzzleHttp\Client;
@@ -191,17 +192,23 @@ class SearchController extends Controller
                 'query' => $request->query()
             ]);
 
-//        dd($paginator->setPageName('sida'));
         $paginator->setPageName('sida');
+        $paginatorMarkup = $paginator->render()->toHtml();
 
-//        dd($allJobs, $paginator, $searchMeta);
 
         if ($request->ajax()) {
-            return (json_encode($afSearchMeta));
+            return response()->json([
+                'searchMeta' => $searchMeta,
+                'allJobs' => $allJobs,
+                'paginatorMarkup' => $paginatorMarkup,
+                'paginator' => $paginator->toArray()
+                ]);
+        }
+        else{
+            $request->flash();
+            return view('pages.search', ['jobs' => $allJobs, 'searchMeta' => $searchMeta, 'currentPage' => $askedPage, 'request' => $request, 'paginator' => $paginator]);
         }
 
-        $request->flash();
-        return view('pages.search', ['jobs' => $allJobs, 'searchMeta' => $searchMeta, 'currentPage' => $askedPage, 'request' => $request, 'paginator' => $paginator]);
     }
 
     public static function getNumberOfAfJobs($keyword = null)
@@ -211,7 +218,7 @@ class SearchController extends Controller
         $searchParams = [
             'anstallningstyp' => 1,
             'antalrader' => 1,
-            'yrkesomradeid' => 15, // Pedagogiskt arbete
+            'yrkesomradeid' => config('app.yrkesomradeid')[0], // Pedagogiskt arbete
         ];
 
         if(isset($keyword)){
@@ -328,6 +335,10 @@ class SearchController extends Controller
             } else{
                 return false;
             }
+
+            foreach ($jobMatches as $job){
+                $job->url = action('JobController@index', $job->annonsid);
+            }
     //        $jobMatches = collect($response->get('matchningslista')->matchningdata); // the queried jobs
 
             return compact(['jobMatches', 'searchMeta']);
@@ -386,7 +397,14 @@ class SearchController extends Controller
             ->take($this->numPerPage)
             ->get();
 
-//        $request->flash(); // sätt tillbaka sökparametrarna på sidan för användaren
+        foreach ($pageResults as $job){
+            $url = action('JobController@customJob', [$job->id, str_slug($job->title)]);
+            $job->url = $url;
+
+            $logo_path = User::find($job->user_id)->logo_path;
+            $job->logo_path = $logo_path ? env("UPLOADS_URL") . '/' . $logo_path : null;
+        }
+
         $results = [
             'jobMatches'   => $pageResults,
             'searchMeta'    => $numTotalMatches
@@ -401,6 +419,15 @@ class SearchController extends Controller
             ->orderBy('published_at', 'desc')
             ->paginate($this->numPerPage, ['*'], $pageName = 'sida')
             ->all();
+
+        foreach ($pageResults as $job){
+            $url = action('JobController@customJob', [$job->id, str_slug($job->title)]);
+            $job->url = $url;
+
+            $logo_path = User::find($job->user_id)->logo_path;
+            $job->logo_path = $logo_path ? env("UPLOADS_URL") . '/' . $logo_path : null;
+        }
+
 
         $numTotalMatches = Job::numActiveJobs();
         $results = [
