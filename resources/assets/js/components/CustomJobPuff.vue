@@ -22,12 +22,12 @@
                 <div class="row">
                     <div class="block--bottom col-xs-12">
                         <div title="Dagar sedan jobbet publicerades.">
-                            <!--<img class="icon&#45;&#45;small" src="{{ asset('img/time_ago.png') }}"/>-->
+                            <img class="icon--small" src="/img/time_ago.png"/>
 
-                            <!--<span>{{ \Carbon\Carbon::parse($job->published_at)->isSameDay(Carbon\Carbon::today()) ? 'Publicerad idag' : (\Carbon\Carbon::parse($job->published_at)->isSameDay(\Carbon\Carbon::yesterday()) ? 'Publicerades igår' : (\Carbon\Carbon::parse($job->published_at)->startOfDay()->diffInDays(\Carbon\Carbon::now()) . ' dagar sedan publicering')) }}</span>-->
+                            <span>{{ jobData.time_since_published }}</span>
                         </div>
                         <div title="Sista ansökningsdatum för jobbet.">
-                            <!--<img class="icon&#45;&#45;small" src="{{ asset('img/calendar.png') }}"/>-->
+                            <img class="icon--small" src="/img/calendar.png"/>
                             <span>{{ jobData.latest_application_date }}</span>
                         </div>
                     </div>

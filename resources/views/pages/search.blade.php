@@ -134,12 +134,14 @@
                 </div>
             </aside>
 
-        <div class="results">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-12">
-                        {{--@include('pages.partials.searchresults')--}}
-                        <search-results></search-results>
+
+            <div class="results">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{--@include('pages.partials.searchresults')--}}
+                            <search-results></search-results>
+                        </div>
                     </div>
                 </div>
             </div>

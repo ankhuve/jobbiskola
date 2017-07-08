@@ -66,6 +66,7 @@
 
                 this.$http.get(url).then((response) => {
                     this.jobsObj = JSON.parse(response.body);
+                    this.preventPaginationLinkFollow();
                     console.log(this.jobsObj);
                 }, (response) => {
                     console.log('Error fetching jobs');
@@ -80,6 +81,17 @@
                 if (!results) return null;
                 if (!results[2]) return '';
                 return decodeURIComponent(results[2].replace(/\+/g, " "));
+            },
+
+            preventPaginationLinkFollow: function(){
+                const links = document.querySelectorAll("ul.pagination > li > a");
+
+                for(let i = 0; i > links.length; i++){
+                    links[i].addEventListener("click", e => {
+                        e.preventDefault();
+                        console.log(e.target);
+                    })
+                }
             }
         }
     }

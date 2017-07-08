@@ -16,14 +16,14 @@
 
                     <div class="block--bottom col-xs-12">
                         <div title="Dagar sedan jobbet publicerades.">
-                            <img class="icon--small" src="{{ asset('img/time_ago.png') }}"/>
+                            <img class="icon--small" src="/img/time_ago.png"/>
                             <span>
-                            <!--{{ (\Carbon\Carbon::createFromFormat('Y-m-d\TH:i:se', jobData.publiceraddatum)->isSameDay(\Carbon\Carbon::today())) ? 'Publicerad idag' : ((\Carbon\Carbon::createFromFormat('Y-m-d\TH:i:se', jobData.publiceraddatum)->isSameDay(\Carbon\Carbon::yesterday())) ? 'Publicerades igår' : \Carbon\Carbon::createFromFormat('Y-m-d\TH:i:se', jobData.publiceraddatum)->startOfDay()->diffInDays(Carbon\Carbon::now()) . ' dagar sedan publicering') }}-->
+                            {{ jobData.time_since_published }}
                         </span>
                         </div>
                         <div title="Sista ansökningsdatum för jobbet.">
-                            <img class="icon--small" src="{{ asset('img/calendar.png') }}"/>
-                            <span v-if="jobData.sista_ansokningsdag">{{ substr(jobData.sista_ansokningsdag, 0, 10) }}</span>
+                            <img class="icon--small" src="/img/calendar.png"/>
+                            <span v-if="jobData.sista_ansokningsdag">{{ lastApplicationDay }}</span>
                             <span v-else>-</span>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
 
         computed: {
             lastApplicationDay: function(){
-                return this.jobData
+                return this.jobData.sista_ansokningsdag.substr(0, 10);
             }
         }
     }

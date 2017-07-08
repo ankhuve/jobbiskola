@@ -338,6 +338,8 @@ class SearchController extends Controller
 
             foreach ($jobMatches as $job){
                 $job->url = action('JobController@index', $job->annonsid);
+                $job->time_since_published = (Carbon::createFromFormat('Y-m-d\TH:i:se', $job->publiceraddatum)->isSameDay(Carbon::today())) ? 'Publicerad idag' : ((Carbon::createFromFormat('Y-m-d\TH:i:se', $job->publiceraddatum)->isSameDay(Carbon::yesterday())) ? 'Publicerades igår' : Carbon::createFromFormat('Y-m-d\TH:i:se', $job->publiceraddatum)->startOfDay()->diffInDays(Carbon::now()) . ' dagar sedan publicering');
+
             }
     //        $jobMatches = collect($response->get('matchningslista')->matchningdata); // the queried jobs
 
@@ -403,6 +405,7 @@ class SearchController extends Controller
 
             $logo_path = User::find($job->user_id)->logo_path;
             $job->logo_path = $logo_path ? env("UPLOADS_URL") . '/' . $logo_path : null;
+            $job->time_since_published = Carbon::parse($job->published_at)->isSameDay(Carbon::today()) ? 'Publicerad idag' : (Carbon::parse($job->published_at)->isSameDay(Carbon::yesterday()) ? 'Publicerades igår' : (Carbon::parse($job->published_at)->startOfDay()->diffInDays(Carbon::now()) . ' dagar sedan publicering'));
         }
 
         $results = [
@@ -426,6 +429,7 @@ class SearchController extends Controller
 
             $logo_path = User::find($job->user_id)->logo_path;
             $job->logo_path = $logo_path ? env("UPLOADS_URL") . '/' . $logo_path : null;
+            $job->time_since_published = Carbon::parse($job->published_at)->isSameDay(Carbon::today()) ? 'Publicerad idag' : (Carbon::parse($job->published_at)->isSameDay(Carbon::yesterday()) ? 'Publicerades igår' : (Carbon::parse($job->published_at)->startOfDay()->diffInDays(Carbon::now()) . ' dagar sedan publicering'));
         }
 
 
