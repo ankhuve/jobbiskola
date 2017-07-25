@@ -7,16 +7,25 @@
         float: left;
     }
 
-    .results{
+    .results-wrapper{
         width: 100%;
         display: inline-block;
-        float: left;
         min-height: calc(100vh - #{$navbar-height});
+
+        .results-content{
+            margin: 0 auto;
+            width: 100%;
+            max-width: $screen-lg;
+        }
 
         h3{
             color: $secondary-color-dark;
             font-size: 2.5rem;
             margin: 1rem 1rem 2rem;
+        }
+
+        h4{
+            color: $text-color;
         }
     }
 }
@@ -27,7 +36,7 @@
             width: 250px;
         }
 
-        .results{
+        .results-wrapper{
             border-left: 2px solid #d6d6d6;
             width: calc(100% - 250px);
             padding: 0 2rem;
@@ -43,7 +52,7 @@
             display: inline-block;
         }
 
-        .results{
+        .results-wrapper{
             width: calc(100% - 250px);
             //overflow: hidden;
         }

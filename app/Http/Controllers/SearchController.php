@@ -175,7 +175,6 @@ class SearchController extends Controller
             $allJobs = collect($customResults['jobMatches'])->merge($afJobs);
         }
         else{
-            dd();
             $allJobs = collect($customResults['jobMatches']);
         }
 

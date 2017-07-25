@@ -1,42 +1,48 @@
 <template>
-    <h3 v-show="jobsObj.searchMeta">Antal sökträffar:
-        <span id="numberOfJobMatches" transition="stagger">{{ jobsObj.searchMeta ? jobsObj.searchMeta.all : "" }}</span>
-    </h3>
+    <div class="results-content">
+        <h3 v-show="jobsObj.searchMeta">Antal sökträffar:
+            <span id="numberOfJobMatches">{{ jobsObj.searchMeta ? jobsObj.searchMeta.all : "" }}</span>
+        </h3>
 
-    <div v-for="job in jobsObj.allJobs" transition="stagger" enter-stagger="25">
-        <custom-job-puff :job-data="job" v-if="!job.annonsid"></custom-job-puff>
-        <job-puff :job-data="job" v-if="job.annonsid"></job-puff>
-    </div>
-
-    <template v-if="jobsObj.paginator && jobsObj.paginator.data.length === 0">
-        <div id="numSearchResults">
-            <h4>Inga fler jobb hittades!</h4>
+        <div v-for="job in jobsObj.allJobs" transition="stagger" enter-stagger="25">
+            <custom-job-puff :job-data="job" v-if="!job.annonsid"></custom-job-puff>
+            <job-puff :job-data="job" v-if="job.annonsid"></job-puff>
         </div>
-    </template>
 
-    <div v-show="!showJobs && !errorOccurred">
-        <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
+        <template v-if="jobsObj.paginator && jobsObj.paginator.data.length === 0">
+            <div id="numSearchResults">
+                <h4>Inga fler jobb hittades!</h4>
+            </div>
+        </template>
+
+        <div v-show="!showJobs && !errorOccurred">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div v-if="slowLoading" class="row text-center" transition="stagger">
+                <br>
+                <h4>(Sökningen verkar gå långsammare än vanligt..)</h4>
+                <br>
+                <button class="btn btn-primary" @click="fetchJobs">Prova igen</button>
+            </div>
         </div>
-        <div v-show="slowLoading" class="row text-center">
+
+        <div v-if="errorOccurred" class="row text-center" transition="stagger">
+            <h3>Hoppsan!</h3>
+            <h4>Något gick visst snett vid sökningen.</h4>
             <br>
-            <h4>(Sökningen verkar gå långsammare än vanligt..)</h4>
-            <br>
-            <button class="btn btn-primary" @click="fetchJobs">Prova igen</button>
+            <button class="btn btn-primary" @click="fetchJobs">Försök igen</button>
         </div>
-    </div>
 
-    <div v-if="errorOccurred" class="row text-center">
-        <h3>Hoppsan!</h3>
-        <h4>Något gick visst snett vid sökningen.</h4>
-        <br>
-        <button class="btn btn-primary btn-lg" @click="fetchJobs">Försök igen</button>
-    </div>
-
-    <div id="pagination" v-show="showPagination">
-        {{{ jobsObj.paginatorMarkup }}}
+        <div id="pagination" v-show="showPagination">
+            <div class="row">
+                <div class="col-xs-12" align="center">
+                    {{{ jobsObj.paginatorMarkup }}}
+                </div>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -64,7 +70,7 @@
                 errorOccurred: false,
                 slowLoading: false,
                 slowLoadingTimeout: null,
-                fetchJobsRequest: null,
+                previousRequest: null,
                 parameters: {
                     'sida': '',
                     'lan': '',
@@ -93,29 +99,41 @@
                     if (!this.errorOccurred || !this.showJobs) {
                         this.slowLoading = true;
                     }
-                }, 1000);
+                }, 5000);
 
-                this.fetchJobsRequest = this.$http.post(url, parameters).then((response) => {
-                    try {
-                        this.jobsObj = response.json();
-                        this.showJobs = true;
+                this.fetchJobsRequest = this.$http.post(url, parameters, {
+                    // use before callback
+                    before(request) {
 
-                        setTimeout(() => {
-                            this.showPagination = true;
-                            Vue.nextTick(() => {
-                                this.setPaginationEventListeners();
-                            });
-                        }, 500);
-                    } catch (e) {
+                        // abort previous request, if exists
+                        if (this.previousRequest) {
+                            this.previousRequest.abort();
+                        }
+
+                        // set previous request on Vue instance
+                        this.previousRequest = request;
+                    }
+                }).then((response) => {
+                        try {
+                            this.jobsObj = response.json();
+                            this.showJobs = true;
+
+                            setTimeout(() => {
+                                this.showPagination = true;
+                                Vue.nextTick(() => {
+                                    this.setPaginationEventListeners();
+                                });
+                            }, 500);
+                        } catch (e) {
+                            console.log('Error fetching jobs');
+                            this.errorOccurred = true;
+                        }
+
+                    },
+                    (response) => {
                         console.log('Error fetching jobs');
                         this.errorOccurred = true;
-                    }
-
-                },
-                (response) => {
-                    console.log('Error fetching jobs');
-                    this.errorOccurred = true;
-                });
+                    });
             },
 
             resetStates: function() {
@@ -127,10 +145,6 @@
 
                 if (this.slowLoadingTimeout) {
                     clearTimeout(this.slowLoadingTimeout);
-                }
-
-                if (this.fetchJobsRequest != null) {
-                    this.fetchJobsRequest.abort();
                 }
             },
 

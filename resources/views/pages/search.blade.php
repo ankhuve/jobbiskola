@@ -107,11 +107,8 @@
             </aside>
 
 
-            <div class="results">
-                <div class="container-fluid">
-                    {{--@include('pages.partials.searchresults')--}}
-                    <search-results></search-results>
-                </div>
+            <div class="results-wrapper">
+                <search-results></search-results>
             </div>
         </div>
 
