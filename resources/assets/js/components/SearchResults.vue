@@ -14,12 +14,25 @@
         </div>
     </template>
 
-    <div v-show="!showJobs">
+    <div v-show="!showJobs && !errorOccurred">
         <div class="spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
             <div class="bounce3"></div>
         </div>
+        <div v-show="slowLoading" class="row text-center">
+            <br>
+            <h4>(Sökningen verkar gå långsammare än vanligt..)</h4>
+            <br>
+            <button class="btn btn-primary" @click="fetchJobs">Prova igen</button>
+        </div>
+    </div>
+
+    <div v-if="errorOccurred" class="row text-center">
+        <h3>Hoppsan!</h3>
+        <h4>Något gick visst snett vid sökningen.</h4>
+        <br>
+        <button class="btn btn-primary btn-lg" @click="fetchJobs">Försök igen</button>
     </div>
 
     <div id="pagination" v-show="showPagination">
@@ -49,6 +62,9 @@
                 showJobs: false,
                 infoText: 'Inga fler jobb hittades!',
                 errorOccurred: false,
+                slowLoading: false,
+                slowLoadingTimeout: null,
+                fetchJobsRequest: null,
                 parameters: {
                     'sida': '',
                     'lan': '',
@@ -57,13 +73,9 @@
                 }
             }
         },
-
-        props: {},
-
         methods: {
             fetchJobs: function(){
-                this.showJobs = false;
-                this.showPagination = false;
+                this.resetStates();
 
                 $('html, body').animate({
                     scrollTop: window.screenTop
@@ -77,26 +89,49 @@
                 }
 
                 var url = 'api/fetchJobs';
+                this.slowLoadingTimeout = setTimeout(() => {
+                    if (!this.errorOccurred || !this.showJobs) {
+                        this.slowLoading = true;
+                    }
+                }, 1000);
 
-                this.jobsObj = {};
+                this.fetchJobsRequest = this.$http.post(url, parameters).then((response) => {
+                    try {
+                        this.jobsObj = response.json();
+                        this.showJobs = true;
 
-                this.$http.post(url, parameters).then((response) => {
-                    this.jobsObj = response.json();
-                    this.showJobs = true;
+                        setTimeout(() => {
+                            this.showPagination = true;
+                            Vue.nextTick(() => {
+                                this.setPaginationEventListeners();
+                            });
+                        }, 500);
+                    } catch (e) {
+                        console.log('Error fetching jobs');
+                        this.errorOccurred = true;
+                    }
 
-                    setTimeout(() => {
-                        this.showPagination = true;
-
-                        Vue.nextTick(() => {
-                            this.setPaginationEventListeners();
-                        });
-                    }, 500);
-
-                }, (response) => {
+                },
+                (response) => {
                     console.log('Error fetching jobs');
                     this.errorOccurred = true;
-                    this.showPagination = true;
                 });
+            },
+
+            resetStates: function() {
+                this.showJobs = false;
+                this.errorOccurred = false;
+                this.showPagination = false;
+                this.slowLoading = false;
+                this.jobsObj = {};
+
+                if (this.slowLoadingTimeout) {
+                    clearTimeout(this.slowLoadingTimeout);
+                }
+
+                if (this.fetchJobsRequest != null) {
+                    this.fetchJobsRequest.abort();
+                }
             },
 
             getUrlParameterByName: function(name, url){
