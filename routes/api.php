@@ -22,4 +22,5 @@ Route::get('/user', function (Request $request) {
 Route::get('/numJobs', 'HomeController@getTotalNumberOfJobs');
 
 // Get all job ads
-Route::get('/fetchJobs', 'SearchController@index');
+Route::get('/fetchJobs', 'SearchController@getJobs');
+Route::post('/fetchJobs', 'SearchController@getJobs');

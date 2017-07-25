@@ -105,3 +105,11 @@
         }
     }
 }
+
+.stagger-transition {
+    transition: all .5s ease;
+}
+.stagger-enter, .stagger-leave {
+    opacity: 0;
+    height: 0;
+}
