@@ -106,17 +106,10 @@
                 </div>
             </aside>
 
-
             <div class="results-wrapper">
                 <search-results></search-results>
             </div>
         </div>
 
     </section>
-
-
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.1/vue.js"></script>--}}
-    {{--<script src="/js/jquery.js"></script>--}}
-    {{--<script src="/js/search.js"></script>--}}
-
 @endsection

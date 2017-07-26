@@ -226,7 +226,7 @@ class SearchController extends Controller
         $searchParams = [
             'anstallningstyp' => 1,
             'antalrader' => 1,
-            'yrkesomradeid' => config('app.yrkesomradeid')[0], // Pedagogiskt arbete
+            'yrkesomradeid' => config('app.yrkesomradeid')[0]
         ];
 
         if(isset($keyword)){
@@ -303,7 +303,7 @@ class SearchController extends Controller
             'anstallningstyp' => 1,
 //            'nyckelord' => $keyword,
 //            'lanid' => Input::get('lan') ?: null,
-            'yrkesomradeid' => 15, // Pedagogiskt arbete
+            'yrkesomradeid' => config('app.yrkesomradeid')[0],
             'sida' => $pageToGet
         ];
 
