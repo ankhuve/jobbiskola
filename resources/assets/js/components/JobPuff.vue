@@ -14,7 +14,7 @@
                         </div>
                     </div>
 
-                    <div class="block--bottom col-xs-12">
+                    <div class="block--bottom">
                         <div title="Dagar sedan jobbet publicerades.">
                             <img class="icon--small" src="/img/time_ago.png"/>
                             <span>
