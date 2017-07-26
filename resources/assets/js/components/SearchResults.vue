@@ -166,7 +166,7 @@
                         e.preventDefault();
 
                         // add the correct parameters to the url
-                        var queryString = '';
+                        var queryString = "";
                         var count = 0;
                         for (var p in this.parameters){
                             if (this.getUrlParameterByName(p, e.target)) {

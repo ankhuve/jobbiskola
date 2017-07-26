@@ -25,8 +25,6 @@
 
         methods: {
             fetchNumberOfJobs: function(){
-                console.log('fetching num of jobs..');
-
                 this.$http.get('api/numJobs').then((response) => {
                     this.numJobs = response.body;
                 }, (response) => {
