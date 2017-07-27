@@ -2,9 +2,10 @@
 
 return [
 
-    'job_category_name' => 'yrkesomradeid',
+    'af_type_major' => [15],
 
-    'yrkesomradeid' => [15],
+    'af_type_name_major' => 'yrkesomradeid',
+    'af_type_name_minor' => 'yrkesgruppid',
 
     /*
     |--------------------------------------------------------------------------

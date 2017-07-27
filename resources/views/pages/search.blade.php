@@ -72,29 +72,29 @@
                             <option {{ $request->get('lan') === "90" ? "selected" : "" }} value="90" label="Ospecificerad arbetsort" name="Ospecificerad arbetsort">Ospecificerad arbetsort</option>
                         </select>
                     </div>
-                    <select name="yrkesgrupper" class="form-input" id="job-group">
-                        <option {{ $request->get('yrkesgrupper') === "" ? 'selected' : '' }} class="defaultOption" value="">Alla yrkesgrupper</option>
-                        <option {{ $request->get('yrkesgrupper') === "2314" ? 'selected' : '' }} value="2314" label="Doktorander" name="Doktorander">Doktorander</option>
-                        <option {{ $request->get('yrkesgrupper') === "5312" ? 'selected' : '' }} value="5312" label="Elevassistenter m.fl." name="Elevassistenter m.fl.">Elevassistenter m.fl.</option>
-                        <option {{ $request->get('yrkesgrupper') === "2313" ? 'selected' : '' }} value="2313" label="Forskarassistenter m.fl." name="Forskarassistenter m.fl.">Forskarassistenter m.fl.</option>
-                        <option {{ $request->get('yrkesgrupper') === "2342" ? 'selected' : '' }} value="2342" label="Fritidspedagoger" name="Fritidspedagoger">Fritidspedagoger</option>
-                        <option {{ $request->get('yrkesgrupper') === "9001" ? 'selected' : '' }} value="9001" label="Förskolechef" name="Förskolechef">Förskolechef</option>
-                        <option {{ $request->get('yrkesgrupper') === "2343" ? 'selected' : '' }} value="2343" label="Förskollärare" name="Förskollärare">Förskollärare</option>
-                        <option {{ $request->get('yrkesgrupper') === "2341" ? 'selected' : '' }} value="2341" label="Grundskollärare" name="Grundskollärare">Grundskollärare</option>
-                        <option {{ $request->get('yrkesgrupper') === "2330" ? 'selected' : '' }} value="2330" label="Gymnasielärare" name="Gymnasielärare">Gymnasielärare</option>
-                        <option {{ $request->get('yrkesgrupper') === "3422" ? 'selected' : '' }} value="3422" label="Idrottstränare och instruktörer m.fl." name="Idrottstränare och instruktörer m.fl.">Idrottstränare och instruktörer m.fl.</option>
-                        <option {{ $request->get('yrkesgrupper') === "2320" ? 'selected' : '' }} value="2320" label="Lärare i yrkesämnen" name="Lärare i yrkesämnen">Lärare i yrkesämnen</option>
-                        <option {{ $request->get('yrkesgrupper') === "3421" ? 'selected' : '' }} value="3421" label="Professionella idrottsutövare" name="Professionella idrottsutövare">Professionella idrottsutövare</option>
-                        <option {{ $request->get('yrkesgrupper') === "2311" ? 'selected' : '' }} value="2311" label="Professorer" name="Professorer">Professorer</option>
-                        <option {{ $request->get('yrkesgrupper') === "9000" ? 'selected' : '' }} value="9000" label="Rektorer och skolledare" name="Rektorer och skolledare">Rektorer och skolledare</option>
-                        <option {{ $request->get('yrkesgrupper') === "2351" ? 'selected' : '' }} value="2351" label="Speciallärare och specialpedagoger m.fl." name="Speciallärare och specialpedagoger m.fl.">Speciallärare och specialpedagoger m.fl.</option>
-                        <option {{ $request->get('yrkesgrupper') === "2352" ? 'selected' : '' }} value="2352" label="Studie- och yrkesvägledare" name="Studie- och yrkesvägledare">Studie- och yrkesvägledare</option>
-                        <option {{ $request->get('yrkesgrupper') === "3441" ? 'selected' : '' }} value="3441" label="Trafiklärare" name="Trafiklärare">Trafiklärare</option>
-                        <option {{ $request->get('yrkesgrupper') === "2312" ? 'selected' : '' }} value="2312" label="Universitets- och högskolelektorer" name="Universitets- och högskolelektorer">Universitets- och högskolelektorer</option>
-                        <option {{ $request->get('yrkesgrupper') === "2359" ? 'selected' : '' }} value="2359" label="Övr. pedagoger med teoretisk specialistkompetens" name="Övr. pedagoger med teoretisk specialistkompetens">Övr. pedagoger med teoretisk specialistkompetens</option>
-                        <option {{ $request->get('yrkesgrupper') === "2319" ? 'selected' : '' }} value="2319" label="Övriga universitets- och högskollärare" name="Övriga universitets- och högskollärare">Övriga universitets- och högskollärare</option>
-                        <option {{ $request->get('yrkesgrupper') === "3449" ? 'selected' : '' }} value="3449" label="Övriga utbildare och instruktörer" name="Övriga utbildare och instruktörer">Övriga utbildare och instruktörer</option>
-                        <option {{ $request->get('yrkesgrupper') === "9002" ? 'selected' : '' }} value="9002" label="Övrigt" name="Övrigt">Övrigt</option>
+                    <select name="{{ config('app.af_type_name_minor') }}" class="form-input" id="job-group">
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "" ? 'selected' : '' }} class="defaultOption" value="">Alla yrkesgrupper</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2314" ? 'selected' : '' }} value="2314" label="Doktorander" name="Doktorander">Doktorander</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "5312" ? 'selected' : '' }} value="5312" label="Elevassistenter m.fl." name="Elevassistenter m.fl.">Elevassistenter m.fl.</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2313" ? 'selected' : '' }} value="2313" label="Forskarassistenter m.fl." name="Forskarassistenter m.fl.">Forskarassistenter m.fl.</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2342" ? 'selected' : '' }} value="2342" label="Fritidspedagoger" name="Fritidspedagoger">Fritidspedagoger</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "9001" ? 'selected' : '' }} value="9001" label="Förskolechef" name="Förskolechef">Förskolechef</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2343" ? 'selected' : '' }} value="2343" label="Förskollärare" name="Förskollärare">Förskollärare</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2341" ? 'selected' : '' }} value="2341" label="Grundskollärare" name="Grundskollärare">Grundskollärare</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2330" ? 'selected' : '' }} value="2330" label="Gymnasielärare" name="Gymnasielärare">Gymnasielärare</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "3422" ? 'selected' : '' }} value="3422" label="Idrottstränare och instruktörer m.fl." name="Idrottstränare och instruktörer m.fl.">Idrottstränare och instruktörer m.fl.</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2320" ? 'selected' : '' }} value="2320" label="Lärare i yrkesämnen" name="Lärare i yrkesämnen">Lärare i yrkesämnen</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "3421" ? 'selected' : '' }} value="3421" label="Professionella idrottsutövare" name="Professionella idrottsutövare">Professionella idrottsutövare</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2311" ? 'selected' : '' }} value="2311" label="Professorer" name="Professorer">Professorer</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "9000" ? 'selected' : '' }} value="9000" label="Rektorer och skolledare" name="Rektorer och skolledare">Rektorer och skolledare</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2351" ? 'selected' : '' }} value="2351" label="Speciallärare och specialpedagoger m.fl." name="Speciallärare och specialpedagoger m.fl.">Speciallärare och specialpedagoger m.fl.</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2352" ? 'selected' : '' }} value="2352" label="Studie- och yrkesvägledare" name="Studie- och yrkesvägledare">Studie- och yrkesvägledare</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "3441" ? 'selected' : '' }} value="3441" label="Trafiklärare" name="Trafiklärare">Trafiklärare</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2312" ? 'selected' : '' }} value="2312" label="Universitets- och högskolelektorer" name="Universitets- och högskolelektorer">Universitets- och högskolelektorer</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2359" ? 'selected' : '' }} value="2359" label="Övr. pedagoger med teoretisk specialistkompetens" name="Övr. pedagoger med teoretisk specialistkompetens">Övr. pedagoger med teoretisk specialistkompetens</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "2319" ? 'selected' : '' }} value="2319" label="Övriga universitets- och högskollärare" name="Övriga universitets- och högskollärare">Övriga universitets- och högskollärare</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "3449" ? 'selected' : '' }} value="3449" label="Övriga utbildare och instruktörer" name="Övriga utbildare och instruktörer">Övriga utbildare och instruktörer</option>
+                        <option {{ $request->get(config("app.af_type_name_minor")) === "9002" ? 'selected' : '' }} value="9002" label="Övrigt" name="Övrigt">Övrigt</option>
                     </select>
                     <div class="row">
                         <div class="col-xs-8">
