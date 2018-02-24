@@ -22,7 +22,7 @@ elixir(mix => {
             'js/app.js'
         ], 'public/build')
         .browserSync({
-            'proxy' : 'jobbiskola.app',
+            'proxy' : 'jobbiskola.test',
             'port' : 5000
         });
 });
